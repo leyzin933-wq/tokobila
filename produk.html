@@ -28,24 +28,21 @@ body { background: linear-gradient(135deg, var(--celery), var(--banana)); font-f
 <h2 class="fw-bold text-center mb-4 text-success">Daftar Produk Buah</h2>
 <div class="row g-4">
 
-
-<!-- Generated product cards -->
 <script>
 const fruits=[
-{name:"Pepaya Merah Delima",img: "images/pepaya.jpg"},
-{name:"Buah Plum",img:"images/plum.jpg"},
-{name:"Alpukat",img:"images/alpukat.jpg"},
-{name:"Pear",img:"images/pear.jpg"},
-{name:"Pear Jambu",img:"images/pearjambu.jpg"},
-{name:"Apel Merah",img:"images/apelmerah.jpg"},
-{name:"Apel Hijau",img:"images/apelhijau.jpg"},
-{name:"Buah Naga",img:"images/naga.jpg"},
-{name:"Anggur Merah",img:"images/am.jpg"},
-{name:"Anggur Hijau",img:"images/ahij.jpg"},
-{name:"Anggur Hitam",img:"images/ahit.jpg"},
-{name:"Jeruk",img:"images/jeruk.jpg"}
+{name:"Pepaya Merah Delima",img:"pepaya.jpg"},
+{name:"Buah Plum",img:"plum.jpg"},
+{name:"Alpukat",img:"alpukat.jpg"},
+{name:"Pear",img:"pear.jpg"},
+{name:"Pear Jambu",img:"pearjambu.jpg"},
+{name:"Apel Merah",img:"apelmerah.jpg"},
+{name:"Apel Hijau",img:"apelhijau.jpg"},
+{name:"Buah Naga",img:"naga.jpg"},
+{name:"Anggur Merah",img:"am.jpg"},
+{name:"Anggur Hijau",img:"ahij.jpg"},
+{name:"Anggur Hitam",img:"ahit.jpg"},
+{name:"Jeruk",img:"jeruk.jpg"}
 ];
-
 
 document.write(fruits.map(f=>`
 <div class='col-md-3'>
@@ -58,11 +55,12 @@ document.write(fruits.map(f=>`
 </div>
 </div>`).join(''));
 
-
-function toggleStock(btn){ btn.textContent = btn.textContent === "Stok Ada" ? "Stok Habis" : "Stok Ada"; }
+function toggleStock(btn){
+  btn.textContent = btn.textContent === "Stok Ada" ? "Stok Habis" : "Stok Ada";
+}
 </script>
 
-
 </div>
 </div>
-</body></html>
+</body>
+</html>
