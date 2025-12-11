@@ -1,66 +1,109 @@
 <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produk — Toko Buah Nabila</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
 :root { --celery:#b6d57a; --banana:#ffe135; }
 body { background: linear-gradient(135deg, var(--celery), var(--banana)); font-family:"Poppins",sans-serif; }
-.fruit-card{border-radius:18px;box-shadow:0 6px 15px rgba(0,0,0,0.2);}
+.fruit-card { border-radius: 18px; box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
 </style>
 </head>
+
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
   <div class="container">
     <a class="navbar-brand fw-bold" href="index.html">Toko Buah Nabila</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
-        <li class="nav-item"><a class="nav-link" href="produk.html">Produk</a></li>
+        <li class="nav-item"><a class="nav-link active" href="produk.html">Produk</a></li>
         <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang</a></li>
         <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
       </ul>
     </div>
+
+    <!-- Tombol login admin -->
+    <button onclick="loginAdmin()" class="btn btn-dark btn-sm ms-3">Login Admin</button>
   </div>
 </nav>
 
 <div class="container py-5">
 <h2 class="fw-bold text-center mb-4 text-success">Daftar Produk Buah</h2>
+
 <div class="row g-4">
 
 <script>
-const fruits=[
-{name:"Pepaya Merah Delima",img:"pepaya.jpg"},
-{name:"Buah Plum",img:"plum.jpg"},
-{name:"Alpukat",img:"alpukat.jpg"},
-{name:"Pear",img:"pear.jpg"},
-{name:"Pear Jambu",img:"pearjambu.jpg"},
-{name:"Apel Merah",img:"apelmerah.jpg"},
-{name:"Apel Hijau",img:"apelhijau.jpg"},
-{name:"Buah Naga",img:"naga.jpg"},
-{name:"Anggur Merah",img:"am.jpg"},
-{name:"Anggur Hijau",img:"ahij.jpg"},
-{name:"Anggur Hitam",img:"ahit.jpg"},
-{name:"Jeruk",img:"jeruk.jpg"}
+let isAdmin = false;  // Pengunjung bukan admin secara default
+
+// LOGIN ADMIN
+function loginAdmin(){
+    let pw = prompt("Masukkan password admin:");
+    if(pw === "nabila123"){
+        alert("Login berhasil!");
+        isAdmin = true;
+        location.reload(); // reload agar tombol stok muncul
+    } else {
+        alert("Password salah!");
+    }
+}
+
+// DATA PRODUK
+const fruits = [
+    {name:"Pepaya Merah Delima", img:"pepaya.jpg"},
+    {name:"Buah Plum", img:"plum.jpg"},
+    {name:"Alpukat", img:"alpukat.jpg"},
+    {name:"Pear", img:"pear.jpg"},
+    {name:"Pear Jambu", img:"pearjambu.jpg"},
+    {name:"Apel Merah", img:"apelmerah.jpg"},
+    {name:"Apel Hijau", img:"apelhijau.jpg"},
+    {name:"Buah Naga", img:"naga.jpg"},
+    {name:"Anggur Merah", img:"am.jpg"},
+    {name:"Anggur Hijau", img:"ahij.jpg"},
+    {name:"Anggur Hitam", img:"ahit.jpg"},
+    {name:"Jeruk", img:"jeruk.jpg"}
 ];
 
-document.write(fruits.map(f=>`
-<div class='col-md-3'>
-<div class='card fruit-card'>
-<img src='${f.img}' class='card-img-top' alt='${f.name}'>
-<div class='card-body text-center'>
-<h5 class='fw-bold'>${f.name}</h5>
-<button class='btn btn-success' onclick="toggleStock(this)">Stok Ada</button>
-</div>
-</div>
-</div>`).join(''));
+// MENAMPILKAN PRODUK
+document.write(
+    fruits.map(f => `
+    <div class="col-md-3">
+        <div class="card fruit-card">
+            <img src="${f.img}" class="card-img-top" alt="${f.name}">
+            <div class="card-body text-center">
+                <h5 class="fw-bold">${f.name}</h5>
 
+                ${
+                    isAdmin 
+                    ? `<button class='btn btn-success' onclick="toggleStock(this)">Stok Ada</button>`
+                    : `<span class='badge bg-success'>Stok Ada</span>`
+                }
+
+            </div>
+        </div>
+    </div>
+    `).join("")
+);
+
+// FUNGSI UBAH STOK (ADMIN SAJA)
 function toggleStock(btn){
-  btn.textContent = btn.textContent === "Stok Ada" ? "Stok Habis" : "Stok Ada";
+    btn.textContent = btn.textContent === "Stok Ada" ? "Stok Habis" : "Stok Ada";
 }
 </script>
 
 </div>
 </div>
+
 </body>
 </html>
+
+
